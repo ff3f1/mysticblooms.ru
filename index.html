@@ -298,59 +298,40 @@
 }
 
 @media (max-width: 768px) {
-    /* Фиксированная шапка */
+    /* Шапка для мобилок */
     .header {
         flex-wrap: wrap;
-        padding: 0.5rem 5%;
-        height: 70px; /* Фиксируем высоту */
-        position: fixed;
-        top: 0;
+        padding: 1rem 5%;
     }
-
-    /* Основной контент */
-    .categories-grid, .gallery {
-        padding: 100px 5% 40px !important; /* Отступ сверху = высота шапки + 30px */
-        margin-top: 0;
-    }
-
-    /* Логотип */
     .logo {
-        flex: 1 0 55%;
-    }
-    .logo-img {
-        width: 45px;
-        height: 45px;
+        flex: 1 0 60%;
     }
     .site-title {
         display: block !important;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         white-space: nowrap;
     }
-
-    /* Кнопка "Контакты" */
     .nav {
-        flex: 1 0 45%;
+        flex: 1 0 40%;
         text-align: right;
     }
     .nav-link {
-        padding: 0.4rem 0.8rem !important;
-        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
     }
-
-    /* Поисковая строка */
-    .search-container {
-        order: 3;
-        margin: 10px 0 0 0;
+    /* Галерея и категории */
+    .gallery, .categories-grid {
+        grid-template-columns: 1fr;
+        padding: 90px 5% 40px;
     }
-    .search-input {
-        padding: 0.5rem 1.2rem;
-        font-size: 0.85rem;
-    }
-
-    /* Названия категорий */
+    /* Название категорий */
     .category-label {
-        padding: 0.8rem;
-        font-size: 1rem;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+    /* Поисковая строка */
+    .search-input {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
     }
 }
 

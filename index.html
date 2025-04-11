@@ -274,36 +274,81 @@
             transform: rotate(90deg) scale(1.2);
         }
 
-        /* Адаптив */
-        @media (max-width: 1200px) {
-            .gallery {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+/* Адаптив */
+@media (max-width: 1200px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-        @media (max-width: 992px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .search-container {
-                display: none;
-            }
-        }
+@media (max-width: 992px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    /* Поисковая строка на планшетах */
+    .search-container {
+        display: block !important;
+        flex: 1 0 100%;
+        order: 3;
+        margin: 1rem 0 0 0;
+    }
+}
 
-        @media (max-width: 768px) {
-            .gallery, .categories-grid {
-                grid-template-columns: 1fr;
-            }
-            .site-title {
-                display: none;
-            }
-            .nav-link {
-                padding: 0.5rem 1rem;
-            }
-        }
+@media (max-width: 768px) {
+    /* Шапка для мобилок */
+    .header {
+        flex-wrap: wrap;
+        padding: 1rem 5%;
+    }
+    .logo {
+        flex: 1 0 60%;
+    }
+    .site-title {
+        display: block !important;
+        font-size: 1.2rem;
+        white-space: nowrap;
+    }
+    .nav {
+        flex: 1 0 40%;
+        text-align: right;
+    }
+    .nav-link {
+        padding: 0.5rem 1rem;
+    }
+    /* Галерея и категории */
+    .gallery, .categories-grid {
+        grid-template-columns: 1fr;
+        padding: 90px 5% 40px;
+    }
+    /* Название категорий */
+    .category-label {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+    /* Поисковая строка */
+    .search-input {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 400px) {
+    .logo-img {
+        width: 45px;
+        height: 45px;
+    }
+    .site-title {
+        font-size: 1rem;
+    }
+    .nav-link {
+        padding: 0.5rem !important;
+        font-size: 0.8rem;
+    }
+}
         /* Добавить в самый конец блока со стилями */
 .gallery {
     display: none; /* Скрыть все галереи по умолчанию */

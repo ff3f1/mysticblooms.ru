@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(#050505, #1a1a1a);
+  color: #b30000;
+  font-family: 'Creepster', cursive;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Заголовок */
+header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+  box-shadow: 0 0 40px rgba(200, 0, 0, 0.3);
+  animation: flicker 3s infinite;
+}
+
+h1 {
+  font-size: 5rem;
+  color: #8b0000;
+  text-shadow: 0 0 15px #ff0000, 0 0 30px #8b0000;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: #a30000;
+  text-shadow: 0 0 8px #300000;
+}
+
+/* Жуткое вступление */
+.intro {
+  max-width: 800px;
+  margin: 2rem auto;
+  text-align: center;
+  font-size: 1.7rem;
+  color: #a10000;
+  padding: 0 1rem;
+  text-shadow: 0 0 8px #440000;
+}
+
+/* Галерея */
+.gallery {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.gallery h2 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px #ff0000;
+  color: #660000;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.images img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border: 3px solid #330000;
+  box-shadow: 0 0 25px #600000;
+  transition: transform 0.4s ease, filter 0.3s ease;
+  filter: grayscale(0.4) brightness(0.7);
+}
+
+.images img:hover {
+  transform: scale(1.07) rotate(-1deg);
+  filter: none;
+  box-shadow: 0 0 40px #ff0000;
+}
+
+/* Футер */
+footer {
+  padding: 2rem;
+  text-align: center;
+  background: #0c0c0c;
+  border-top: 1px solid #222;
+  font-size: 1rem;
+  color: #770000;
+}
+
+/* Мерцание */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.85; }
+  50% { opacity: 0.5; }
+  55% { opacity: 0.95; }
+  60% { opacity: 0.7; }
+}
+
+/* Туман */
+.fog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: url('https://i.ibb.co/SxPZQ8z/fog.gif') repeat;
+  background-size: cover;
+  opacity: 0.04;
+  z-index: -1;
+  animation: moveFog 80s linear infinite;
+}
+
+@keyframes moveFog {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+/* Контейнер для крови */
+#blood-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Кровавые капли */
+.blood-drop {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 20px;
+  background: linear-gradient(to bottom, #8b0000, #ff0000);
+  animation: dropBlood 4s linear forwards;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+
+@keyframes dropBlood {
+  0% { top: 0; opacity: 1; transform: scaleX(1); }
+  100% { top: 100vh; opacity: 0; transform: scaleX(0.5); }
+}
+
+/* Уменьшаем громкость фонового звука */
+#audio ambientSound {
+  volume: 0.1;
+}
+/* Lightbox (увеличение картинки при клике) */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.95);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  box-shadow: 0 0 40px #ff0000;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  font-size: 3rem;
+  color: #ff0000;
+  cursor: pointer;
+  text-shadow: 0 0 10px #8b0000;
+}
+
+/* Выравнивание размеров галереи */
+.images img {
+  width: 100%;
+  height: 350px;
+  object-fit: contain; /* вместо cover */
+  background: black; /* чёрный фон для пустых полос */
+}
+.ghost-trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1500;
+  filter: blur(6px);
+  animation: fade 1s forwards;
+}
+
+@keyframes fade {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2); }
+}
+.flicker {
+  animation: flickerAnim 0.2s;
+}
+
+@keyframes flickerAnim {
+  0%, 100% { background-color: black; }
+  50% { background-color: #0a0a0a; }
+}

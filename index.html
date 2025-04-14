@@ -1,607 +1,136 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta name="google-site-verification" content="2TPy7E8vxDiPmpg9scl7uys2UPfXfyNnbITYhyBOHLo" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MysticBlooms — Элитная флористика</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --void: #0F0F0F;
-            --neon: #BB86FC;
-            --gradient-1: #2A0944;
-            --gradient-2: #3B185F;
-            --text: #E0E0E0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-        body {
-            background: linear-gradient(-45deg, var(--gradient-1), var(--gradient-2), var(--gradient-1));
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Шапка */
-        .header {
-            padding: 1rem 5%;
-            background: rgba(15, 15, 15, 0.9);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--neon);
-        }
-
-        .logo {
-            cursor: pointer;
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-img {
-            height: 60px;
-            width: 60px;
-            border-radius: 15px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .logo:hover .logo-img {
-            transform: rotate(15deg);
-        }
-
-        .site-title {
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--neon);
-            font-size: 1.8rem;
-            text-shadow: 0 0 15px var(--neon);
-        }
-
-        /* Поиск */
-        .search-container {
-            flex: 1;
-            max-width: 500px;
-            margin: 0 2rem;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.8rem 2.5rem;
-            border-radius: 30px;
-            border: 1px solid var(--neon);
-            background: rgba(26, 26, 26, 0.8);
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 0 15px var(--neon);
-        }
-
-        /* Навигация */
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            border: 1px solid var(--neon);
-        }
-
-        .nav-link:hover {
-            background: rgba(187, 134, 252, 0.1);
-            box-shadow: 0 0 15px var(--neon);
-        }
-
-        /* Категории */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            padding: 120px 5% 60px;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
-
-        .category-tile {
-            aspect-ratio: 1;
-            background: rgba(26, 26, 26, 0.8);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--neon);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            transform: scale(0.9);
-        }
-
-        .category-tile:hover {
-            transform: scale(0.95) translateY(-5px);
-            box-shadow: 0 0 20px var(--neon);
-        }
-
-        .category-image {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .category-tile:hover .category-image {
-            opacity: 1;
-        }
-
-        .category-label {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--neon);
-            font-size: 1.3rem;
-            text-shadow: 0 0 10px var(--neon);
-            text-align: center;
-        }
-
-        /* Галерея */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 2rem;
-            padding: 120px 5% 60px;
-            max-width: 1600px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
-
-        .flower-card {
-            background: rgba(26, 26, 26, 0.8);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--neon);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .flower-card.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .flower-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px var(--neon);
-        }
-
-        .flower-image {
-            height: 400px;
-            object-fit: cover;
-            width: 100%;
-            border-bottom: 2px solid var(--neon);
-        }
-
-        .flower-info {
-            padding: 1.5rem;
-            min-height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .flower-title {
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--neon);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-            word-wrap: break-word;
-            hyphens: auto;
-            line-height: 1.3;
-        }
-
-        /* Модальное окно */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 2000;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 20px;
-            border: 2px solid var(--neon);
-            pointer-events: none;
-        }
-
-        .modal-close {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            color: var(--neon);
-            font-size: 40px;
-            cursor: pointer;
-            z-index: 2001;
-            transition: transform 0.3s;
-        }
-
-        .modal-close:hover {
-            transform: rotate(90deg) scale(1.2);
-        }
-
-/* Адаптив */
-@media (max-width: 1200px) {
-    .gallery {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    .categories-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    /* Поисковая строка на планшетах */
-    .search-container {
-        display: block !important;
-        flex: 1 0 100%;
-        order: 3;
-        margin: 1rem 0 0 0;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Шапка для мобилок */
-    .header {
-        flex-wrap: wrap;
-        padding: 1rem 5%;
-    }
-    .logo {
-        flex: 1 0 60%;
-    }
-    .site-title {
-        display: block !important;
-        font-size: 1.2rem;
-        white-space: nowrap;
-    }
-    .nav {
-        flex: 1 0 40%;
-        text-align: right;
-    }
-    .nav-link {
-        padding: 0.5rem 1rem;
-    }
-    /* Галерея и категории */
-    .gallery, .categories-grid {
-        grid-template-columns: 1fr;
-        padding: 90px 5% 40px;
-    }
-    /* Название категорий */
-    .category-label {
-        padding: 1rem;
-        font-size: 1.1rem;
-    }
-    /* Поисковая строка */
-    .search-input {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Для очень маленьких экранов */
-@media (max-width: 400px) {
-    .logo-img {
-        width: 45px;
-        height: 45px;
-    }
-    .site-title {
-        font-size: 1rem;
-    }
-    .nav-link {
-        padding: 0.5rem !important;
-        font-size: 0.8rem;
-    }
-}
-        /* Добавить в самый конец блока со стилями */
-.gallery {
-    display: none; /* Скрыть все галереи по умолчанию */
-}
-
-.gallery.active {
-    display: grid; /* Показать активную галерею */
-}
-
-#mainCategories {
-    display: grid; /* Главная всегда видима */
-}
-
-#contacts {
-    padding: 120px 5% 100px; /* Отступ сверху = высота шапки */
-        margin-top: 80px; /* Дополнительный отступ если нужно */
-        display: none;
-        text-align: center;
-        position: relative;
-        z-index: 1; /* Убедитесь, что контент поверх шапки */
-    }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MysticBlooms</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="logo" id="logo">
-            <img src="https://i.ibb.co/tMpmvf3Y/Chat-GPT-Image-8-2025-15-38-12.png" 
-                 alt="MysticBlooms" 
-                 class="logo-img">
-            <h1 class="site-title">MysticBlooms</h1>
-        </div>
+  <div class="fog"></div>
+  <header>
+    <h1>MysticBlooms</h1>
+    <p class="subtitle">Добро пожаловать в царство теней и кошмаров...</p>
+  </header>
 
-        <div class="search-container">
-            <input type="search" 
-                   class="search-input" 
-                   placeholder="Поиск по каталогу...">
-        </div>
-        
-        <nav class="nav">
-            <a href="#contacts" class="nav-link">Контакты</a>
-        </nav>
-    </header>
-
-    <!-- Основной контент -->
-    <main class="categories-grid" id="mainCategories">
-        <div class="category-tile" data-category="bouquets">
-            <img src="https://i.ibb.co/x8Yc5X9L/97616b38-d0ee-476f-a823-8e825efc1778.jpg" 
-                 class="category-image" 
-                 alt="Букеты">
-            <div class="category-label">Букеты</div>
-        </div>
-
-        <div class="category-tile" data-category="compositions">
-            <img src="https://i.ibb.co/yBGWXgqr/5460747409161317590.jpg" 
-                 class="category-image" 
-                 alt="Композиции">
-            <div class="category-label">Композиции</div>
-        </div>
-
-        <div class="category-tile" data-category="plants">
-            <img src="https://i.ibb.co/Ps413Vsf/44635c7a-3f75-4d2c-97c7-d85fb1da4766.jpg" 
-                 class="category-image" 
-                 alt="Растения">
-            <div class="category-label">Комнатные растения</div>
-        </div>
-
-        <div class="category-tile" data-category="subscription">
-            <img src="https://i.ibb.co/NnWR49mh/38399172-388f-4b07-bac7-8e4071ccbfaa.jpg" 
-                 class="category-image" 
-                 alt="Подписка">
-            <div class="category-label">Цветочная подписка</div>
-        </div>
-    </main>
-
-    <!-- Секции категорий -->
-    <section class="gallery" id="bouquets">
-        <article class="flower-card">
-            <img src="https://i.ibb.co/NRGG44x/5456133828306400490.jpg" 
-                 alt="Сирень" 
-                 class="flower-image">
-            <div class="flower-info">
-                <h3 class="flower-title">Сирень Премиум</h3>
-                <p>Сезонный букет с доставкой</p>
-                <p>₽ 390</p>
-            </div>
-        </article>
-        <!-- Дублируем карточки -->
-        <article class="flower-card">
-            <img src="https://i.ibb.co/NRGG44x/5456133828306400490.jpg" 
-                 alt="Сирень" 
-                 class="flower-image">
-            <div class="flower-info">
-                <h3 class="flower-title">Сирень Премиум</h3>
-                <p>Сезонный букет с доставкой</p>
-                <p>₽ 390</p>
-            </div>
-        </article>
-    </section>
-    <section class="gallery" id="compositions" hidden>
-        <article class="flower-card">
-            <img src="https://i.ibb.co/NRGG44x/5456133828306400490.jpg" 
-                 alt="Сирень" 
-                 class="flower-image">
-            <div class="flower-info">
-                <h3 class="flower-title">Сирень Премиум</h3>
-                <p>Сезонный букет с доставкой</p>
-                <p>₽ 390</p>
-            </div>
-        </article>
+  <main>
+    <section class="intro">
+      <p>
+        Этот сад проклят. Цветы здесь питаются страхом, а листья шепчут мёртвым. Осторожно, каждый шаг может быть последним...
+      </p>
     </section>
 
-    <section class="gallery" id="plants" hidden>
-        <article class="flower-card">
-            <img src="https://i.ibb.co/NRGG44x/5456133828306400490.jpg" 
-                 alt="Сирень" 
-                 class="flower-image">
-            <div class="flower-info">
-                <h3 class="flower-title">Сирень Премиум</h3>
-                <p>Сезонный букет с доставкой</p>
-                <p>₽ 390</p>
-            </div>
-        </article>
+    <section class="gallery">
+      <h2>Зловещая галерея</h2>
+      <div class="images">       
+        <img src="https://i.ibb.co/WvF1Dg5Q/image.jpg" alt="Gallery Image 1" />
+        <img src="https://i.ibb.co/pjp72wfP/image.png" alt="Gallery Image 2" />
+        <img src="https://i.ibb.co/PzbhWTyQ/image.png" alt="Gallery Image 3" />
+        <img src="https://i.ibb.co/kvXrk4W/image.png" alt="Gallery Image 4" />
+        <img src="https://i.ibb.co/BHcxYXKB/image.png" alt="Gallery Image 5" />
+      </div>
     </section>
+  </main>
+<!-- Модальное окно -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img" />
+</div>
 
-    <section class="gallery" id="subscription" hidden>
-        <article class="flower-card">
-            <img src="https://i.ibb.co/NRGG44x/5456133828306400490.jpg" 
-                 alt="Сирень" 
-                 class="flower-image">
-            <div class="flower-info">
-                <h3 class="flower-title">Сирень Премиум</h3>
-                <p>Сезонный букет с доставкой</p>
-                <p>₽ 390</p>
-            </div>
-        </article>
-    </section>
+  <footer>
+    <p>&copy; 2025 MysticBlooms. Призраки наблюдают за тобой...</p>
+  </footer>
+  <audio id="ambientSound" src="https://cdn.pixabay.com/audio/2022/03/24/audio_96b2c6dbd6.mp3" preload="auto" loop></audio>
+  <audio id="ghostSound" src="https://cdn.pixabay.com/audio/2023/02/02/audio_d8c46b1e1e.mp3" preload="auto"></audio>
 
-    <section id="contacts" style="padding: 0 5% 100px; text-align: center;">
-        <div class="flower-info">
-            <h3 class="flower-title">Наши контакты</h3>
-            <p>Telegram: <a href="https://t.me/mysticbloomsflower" style="color: var(--neon); text-decoration: none;">@mysticbloomsflower</a></p>
-            <p>Москва, Южное Бутово</p>
-        </div>
-    </section>
-
-    <div id="imageModal" class="modal">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="expandedImage">
-    </div>
-
+    <!-- Кровавые капли -->
+    <div id="blood-container"></div>
+  
     <script>
-        // Инициализация при загрузке
-        document.addEventListener('DOMContentLoaded', () => {
-            initNavigation();
-            initCards();
-            initModal();
-            handleInitialHash();
-        });
-    
-        // Навигация
-        function initNavigation() {
-            // Клик по категориям
-            document.querySelectorAll('.category-tile').forEach(tile => {
-                tile.addEventListener('click', () => {
-                    const category = tile.dataset.category;
-                    window.location.hash = category;
-                });
-            });
-    
-            // Обработка изменений URL
-            window.addEventListener('hashchange', updateContent);
-            
-            // Возврат на главную
-            document.getElementById('logo').addEventListener('click', () => {
-                window.location.hash = '';
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            });
-        }
-    
-        // Обновление контента
-        function updateContent() {
-    const hash = window.location.hash.substring(1);
-    const categories = ['bouquets', 'compositions', 'plants', 'subscription'];
-    
-    // Скрыть всё
-    document.querySelectorAll('.gallery').forEach(g => {
-        g.classList.remove('active');
-        g.style.display = 'none';
-    });
-    document.getElementById('contacts').style.display = 'none';
-    document.getElementById('mainCategories').style.display = 'none';
-
-    // Показать нужный раздел
-    if (categories.includes(hash)) {
-        const gallery = document.getElementById(hash);
-        gallery.classList.add('active');
-        gallery.style.display = 'grid';
-        window.scrollTo(0, 0);
-    } else if (hash === 'contacts') {
-        document.getElementById('contacts').style.display = 'block';
-        window.scrollTo({
-            top: document.getElementById('contacts').offsetTop - 80,
-            behavior: 'smooth'
-        });
-    } else {
-        document.getElementById('mainCategories').style.display = 'grid';
-        window.scrollTo(0, 0);
-    }
-}
-    
-        // Инициализация карточек
-        function initCards() {
-            document.querySelectorAll('.flower-card').forEach((card, index) => {
-                setTimeout(() => card.classList.add('loaded'), index * 100);
-            });
-        }
-    
-        // Модальное окно
-        function initModal() {
-            document.querySelectorAll('.flower-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const imgSrc = card.querySelector('img').src;
-                    document.getElementById('expandedImage').src = imgSrc;
-                    document.getElementById('imageModal').style.display = 'block';
-                });
-            });
-    
-            document.querySelector('.modal-close').addEventListener('click', closeModal);
-            document.querySelector('.modal').addEventListener('click', closeModal);
-        }
-    
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-    
-        // Обработка начального хэша
-        function handleInitialHash() {
-            updateContent();
-            window.scrollTo(0, 0);
-        }
-    
-        // Поиск
-        document.querySelector('.search-input').addEventListener('input', function(e) {
-        const term = e.target.value.toLowerCase();
-        // Искать только в активной галерее
-        const activeGallery = document.querySelector('.gallery.active');
-        if(activeGallery) {
-            activeGallery.querySelectorAll('.flower-card').forEach(card => {
-                const title = card.querySelector('.flower-title').textContent.toLowerCase();
-                card.style.display = title.includes(term) ? 'block' : 'none';
-            });
-        }
-    });
+      // Скример при наведении
+      const img = document.querySelector(".images img");
+      const scream = document.getElementById("screamSound");
+  
+      img.addEventListener("mouseenter", () => {
+        img.src = "https://i.ibb.co/twKMCHhZ/5faa8fb5a038391-upscaled.jpg"; // заменим на страшное лицо
+        scream.play();
+      });
+  
+      img.addEventListener("mouseleave", () => {
+        img.src = "https://i.ibb.co/WvF1Dg5Q/image.jpg"; // вернуть норму
+      });
+  
+      // Кровавые капли
+      function createBloodDrop() {
+        const drop = document.createElement("div");
+        drop.className = "blood-drop";
+        drop.style.left = Math.random() * 100 + "vw";
+        document.getElementById("blood-container").appendChild(drop);
+        setTimeout(() => drop.remove(), 4000);
+      }
+  
+      setInterval(createBloodDrop, 500);
     </script>
+    <script>
+      // Lightbox
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const close = document.querySelector(".close");
+      const galleryImages = document.querySelectorAll(".images img");
+    
+      galleryImages.forEach(img => {
+        img.addEventListener("click", () => {
+          lightbox.style.display = "flex";
+          lightboxImg.src = img.src;
+        });
+      });
+    
+      close.onclick = () => {
+        lightbox.style.display = "none";
+      };
+    
+      window.onclick = (e) => {
+        if (e.target === lightbox) lightbox.style.display = "none";
+      };
+    
+      // Фоновый звук (только после действия пользователя)
+      const ambient = document.getElementById("ambientSound");
+      document.addEventListener("click", () => {
+        if (ambient.paused) ambient.play().catch(() => {});
+      });
+    </script>
+    <script>
+      const ghostSound = document.getElementById("ghostSound");
+    
+      // Призрак играет раз в 20–40 сек случайно
+      setInterval(() => {
+        if (Math.random() > 0.5) {
+          ghostSound.play().catch(() => {});
+        }
+      }, 20000 + Math.random() * 20000);
+    
+      // Эффект мерцания света
+      function flickerEffect() {
+        document.body.classList.add("flicker");
+        setTimeout(() => document.body.classList.remove("flicker"), 200);
+      }
+    
+      setInterval(() => {
+        if (Math.random() > 0.7) flickerEffect();
+      }, 7000);
+    
+      // Проклятие курсора
+      document.addEventListener("mousemove", e => {
+        const trail = document.createElement("div");
+        trail.className = "ghost-trail";
+        trail.style.left = e.pageX + "px";
+        trail.style.top = e.pageY + "px";
+        document.body.appendChild(trail);
+        setTimeout(() => trail.remove(), 1000);
+      });
+    </script>        
+  </body>
+  </html>  
 </body>
 </html>

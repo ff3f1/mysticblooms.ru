@@ -213,3 +213,42 @@ footer {
   0%, 100% { background-color: black; }
   50% { background-color: #0a0a0a; }
 }
+body {
+  background-color: black;
+  margin: 0;
+  font-family: 'Creepster', cursive;
+  color: #00ff99;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 9vw;
+  text-align: center;
+  margin: 30px 10px;
+  color: #00ff99;
+  text-shadow:
+    0 0 5px #00ff99,
+    0 0 15px #00ff99,
+    0 0 30px #00cc66,
+    0 0 50px #009966;
+}
+
+.description {
+  text-align: center;
+  font-size: 5vw;
+  padding: 10px;
+  margin: 0 20px;
+  color: #00ff99;
+  text-shadow:
+    0 0 5px #00ff99,
+    0 0 10px #009966;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 5vw;
+  }
+  .description {
+    font-size: 2vw;
+  }
+}
